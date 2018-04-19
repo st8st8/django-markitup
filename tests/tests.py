@@ -344,7 +344,7 @@ class TemplatetagMediaUrlTests(MIUTestCase):
 <script type="text/javascript" src="%(prefix)s/markitup/sets/default/set.js"></script>""" % {'prefix': self.prefix}
         return out
 
-    # JQUERY_URL settings and resulting link
+    # MARKITUP_JQUERY_URL settings and resulting link
     jquery_urls = (
         ('jquery.min.js', '/static/jquery.min.js'),
         ('some/path/jquery.min.js', '/static/some/path/jquery.min.js'),
@@ -373,10 +373,10 @@ class TemplatetagMediaUrlTests(MIUTestCase):
         self.assertHTMLEqual(self._get_media(), out)
 
     def test_jquery_url(self):
-        _old_jquery_url = settings.JQUERY_URL
+        _old_jquery_url = settings.MARKITUP_JQUERY_URL
         try:
             for url, link in self.jquery_urls:
-                settings.JQUERY_URL = url
+                settings.MARKITUP_JQUERY_URL = url
                 if url:
                     self.assertIn(link, self._get_js())
                 else:
@@ -389,7 +389,7 @@ class TemplatetagMediaUrlTests(MIUTestCase):
                             % {'prefix': self.prefix}
                             ))
         finally:
-            settings.JQUERY_URL = _old_jquery_url
+            settings.MARKITUP_JQUERY_URL = _old_jquery_url
 
     def test_set_via_settings(self):
         _old_miu_set = settings.MARKITUP_SET
@@ -452,7 +452,7 @@ class WidgetMediaUrlTests(TemplatetagMediaUrlTests):
 
     def test_jquery_in_media(self):
         for url, link in self.jquery_urls:
-            settings.JQUERY_URL = url
+            settings.MARKITUP_JQUERY_URL = url
             if url:
                 self.assertIn(link, self._get_js())
             else:

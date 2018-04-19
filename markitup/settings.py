@@ -8,6 +8,6 @@ MARKITUP_AUTO_PREVIEW = getattr(settings, 'MARKITUP_AUTO_PREVIEW', False)
 # Defaults include trailing slash so that others know path is a directory
 MARKITUP_SET = getattr(settings, 'MARKITUP_SET', 'markitup/sets/default/')
 MARKITUP_SKIN = getattr(settings, 'MARKITUP_SKIN', 'markitup/skins/simple/')
-JQUERY_URL = getattr(
-    settings, 'JQUERY_URL',
+MARKITUP_JQUERY_URL = getattr(
+    settings, 'MARKITUP_JQUERY_URL',
     '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
