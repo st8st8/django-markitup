@@ -12,7 +12,7 @@ from markitup.util import absolute_url
 
 
 class MarkupInput(forms.Widget):
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, **kwargs):
         if value is not None:
             # Special handling for MarkupField value.
             # This won't touch simple TextFields because they don't have
@@ -21,7 +21,7 @@ class MarkupInput(forms.Widget):
                 value = value.raw
             except AttributeError:
                 pass
-        return super(MarkupInput, self).render(name, value, attrs)
+        return super(MarkupInput, self).render(name, value, attrs, **kwargs)
 
 
 class MarkupTextarea(MarkupInput, forms.Textarea):
@@ -69,8 +69,8 @@ class MarkItUpWidget(MarkupTextarea):
             js=js_media)
     media = property(_media)
 
-    def render(self, name, value, attrs=None):
-        html = super(MarkItUpWidget, self).render(name, value, attrs)
+    def render(self, name, value, attrs=None, **kwargs):
+        html = super(MarkItUpWidget, self).render(name, value, attrs, **kwargs)
 
         # Passing base_attrs as a kwarg for compatibility with Django < 1.11
         # (where it will be treated as an innocuous attr named base_attrs)
